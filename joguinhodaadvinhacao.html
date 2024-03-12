@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Jogo de Adivinhação</h1>
+  <p>Escolha um número entre 1 e 100:</p>
+  <button onclick="gerarNumeroAleatorio()">Gerar número aleatório</button>
+  <input type="hidden" id="numeroSecreto" value="">
+  <input type="number" id="numeroDigit" placeholder="Digite um número">
+  <button onclick="verificarNumero()">Verificar</button>
+  <p id="resultado"></p>
+
+  <script>
+    function gerarNumeroAleatorio() {
+      const numeroSecreto = Math.floor(Math.random() * 100) + 1;
+      document.getElementById('numeroSecreto').value = numeroSecreto
+    }
+
+    function verificarNumero() {
+      const numeroSecreto = parseInt(document.getElementById('numeroSecreto').value)
+      const digitado = parseInt(document.getElementById('numeroDigit').value)
+
+      if (isNaN(digitado)) {
+        alert('Por favor, digite um número válido.')
+        return;
+      }
+
+      if (digitado < numeroSecreto) {
+        document.getElementById('resultado').innerText = 'Muito baixo! Tente novamente.'
+      } else if (digitado > numeroSecreto) {
+        document.getElementById('resultado').innerText = 'Muito alto! Tente novamente.'
+      } else {
+        document.getElementById('resultado').innerText = 'Parabéns! Você acertou o número secreto.'
+      }
+    }
+  </script>
+</body>
+</html>
